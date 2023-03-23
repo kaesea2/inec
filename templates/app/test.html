@@ -1,0 +1,44 @@
+{% extends 'app/base.html' %}
+{%block title%}results{%endblock%}
+
+{% block body %}
+    <h1>Result Portal</h1>
+    <div>
+        {% if pu_results %}
+            <h3>showing result for polling unit: {{pu_id}}</h3>
+            <table>
+            {% for pu in pu_results %}
+                <tr><td>{{pu.party_abbreviation}}</td><td>{{pu.party_score}}</td></tr>
+            {% endfor %}
+            </table> 
+        {% endif %}
+        
+        {% if total %}      
+            <h3>Results for {{lga}} LGA</h3>
+            <table>
+            <thead>
+                <tr>
+                <th>Party</th>
+                <th>Total Votes</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for party, votes in total.items %}
+                <tr>
+                    <td>{{ party }}</td>
+                    <td>{{ votes }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            </table>
+        {% endif %}
+
+        
+        {% if polling_unit %}
+            <p>new populated polling unit id: {{polling_unit}}</p>
+            
+        {% endif %}
+            
+    <div> 
+{% endblock body %}
+    
