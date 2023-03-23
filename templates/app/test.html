@@ -2,11 +2,12 @@
 {%block title%}results{%endblock%}
 
 {% block body %}
-    <h1>Result Portal</h1>
-    <div>
+    <h1 class='text-center'>Result Portal</h1>
+    <div class='container'>
         {% if pu_results %}
-            <h3>showing result for polling unit: {{pu_id}}</h3>
-            <table>
+        <h5>showing result for polling unit: {{pu_id}}</h5>
+            <table class="mx-6">
+                <tr><th>party</th><th>score</th></tr>
             {% for pu in pu_results %}
                 <tr><td>{{pu.party_abbreviation}}</td><td>{{pu.party_score}}</td></tr>
             {% endfor %}

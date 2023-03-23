@@ -33,11 +33,11 @@ def pu_result(request, *args,**kwargs):
         
         if form2.is_valid():
             party_score = form2.cleaned_data['party_score']
-            print(party_score)
+            # print(party_score)
             polling_unit = form2.cleaned_data['polling_unit']
-            print(polling_unit.polling_unit_id)
+            # print(polling_unit.polling_unit_id)
             party = form2.cleaned_data['party']
-            print (party.partyname)
+            # print (party.partyname)
             # pu_id = 
             pu_result_add = AnnouncedPuResults.objects.create(polling_unit_uniqueid=polling_unit.polling_unit_id,
                                                               party_abbreviation=party.partyname,

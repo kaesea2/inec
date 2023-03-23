@@ -1,29 +1,29 @@
 {% extends 'app/base.html' %}
-
+{% load bootstrap5 %}
 {%block title%}home{%endblock%}
 
 {% block body %}
-    <h1>PU Result Portal</h1>
+    <h2>PU Result Portal</h2>
         
     <form method="get" action="{% url 'app:result' %}">
         {% csrf_token %}
         <label for="pu_id">Polling Unit ID:</label>
         <input type="text" name="pu_id" id="polling_unit_id">
-        <button type="submit">View</button>
+        <button class='btn btn-primary' type="submit">View</button>
     </form>
     
     <h1>LGA Result Portal</h1>
     <form method="post" action="{% url 'app:result' %}">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">View</button>
+        {%bootstrap_form form%}
+        <button class='btn btn-primary' type="submit">View</button>
     </form>
 
     <h1>PU ADD Result Portal</h1>
     <form method="post" action="{% url 'app:result' %}">
         {% csrf_token %}
-        {{ form2.as_p }}
-        <button type="submit">Add</button>
+        {%bootstrap_form form%}
+        <button class='btn btn-primary' type="submit">Add</button>
     </form>
 {% endblock body %}
     
