@@ -22,7 +22,7 @@
     <h1>PU ADD Result Portal</h1>
     <form method="post" action="{% url 'app:result' %}">
         {% csrf_token %}
-        {%bootstrap_form form%}
+        {%bootstrap_form form2%}
         <button class='btn btn-primary' type="submit">Add</button>
     </form>
 {% endblock body %}
