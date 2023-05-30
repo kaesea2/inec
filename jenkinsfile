@@ -1,0 +1,39 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/kaesea2/inec.git']])
+    
+            }
+        }
+        stage('Build-Image') {
+            steps {
+                sh 'docker build -t inec-app:$BUILD_NUMBER .'
+            }
+        }
+        stage('Run-Image') {
+            steps {
+                sh 'docker network create inec-network'
+                sh 'docker run -d --network=inec-network --name docker-mysql -e MYSQL_ROOT_PASSWORD=root mysql:latest'
+                sh 'docker run -d --network=inec-network -p 1000:8000 --name inec-app inec-app:$BUILD_NUMBER '
+            }
+        }
+        stage('Login-To-DockerHub') {
+            steps {
+                sh 'echo "dckr_pat_cNSSeVKI4n9twwHTChYrI8FWQbk" | docker login -u kaesea --password-stdin'
+            }
+        }
+        stage('Push-To-DockerHub') {
+            steps {
+                sh 'docker push inec-app:$BUILD_NUMBER'
+            }
+        }
+        stage('Logout-From-DockerHub') {
+            steps {
+                sh 'docker logout'
+            }
+        }
+    }
+}
