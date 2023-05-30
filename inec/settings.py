@@ -26,8 +26,8 @@ SECRET_KEY = 'django-insecure-(@8!jfqmc-jijl0*5=w%sj1c@(83-9+z3w1m9f=fh)*j85!@d2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','507d-102-89-47-66.eu.ngrok.io','https://507d-102-89-47-66.eu.ngrok.io']
-CSRF_TRUSTED_ORIGINS=['http://172.0.0.1','https://507d-102-89-47-66.eu.ngrok.io']
+ALLOWED_HOSTS = ['127.0.0.1',"localhost"]
+CSRF_TRUSTED_ORIGINS=['http://172.0.0.1',]
 
 
 
@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app',
-    'bootstrap5',
+    'django_bootstrap5',
 ]
 
 MIDDLEWARE = [
@@ -85,10 +85,13 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         # 'NAME': BASE_DIR / 'db.sqlite3',
-        'NAME':'bincomphptest',
-        'USER':'self',
-        'PASSWORD':'root',
-        'HOST':'127.0.0.1'
+        # 'NAME':'bincomphptest',
+        'NAME': "mysql",
+        'USER': 'root',
+        'PASSWORD': 'root',
+        'HOST': 'docker-mysql',  # Use the container name of the MySQL service
+        'PORT': '3306', 
+
     }
 }
 
